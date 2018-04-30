@@ -1,0 +1,10 @@
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:${boot}"
+    compile "org.springframework.boot:spring-boot-starter-security:${boot}"
+    compile "org.springframework.boot:spring-boot-starter:${boot}"
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:${boot}"
+    compile "org.hibernate:hibernate-core:5.1.0.Final"
+    compile('org.flywaydb:flyway-core:4.2.0')
+    runtime('com.h2database:h2:1.4.196')
+
+}
