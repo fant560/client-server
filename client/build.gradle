@@ -12,6 +12,7 @@ buildscript {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter:${boot}"
     compile "org.springframework.boot:spring-boot-starter-web:${boot}"
+    compile "org.springframework.boot:spring-boot-starter-parent${boot}"
     compile "org.springframework:spring-web:${spring}"
 }
 

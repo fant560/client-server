@@ -3,6 +3,8 @@ package ru.bars.test.client.utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.bars.test.client.controllers.LoginController;
 import ru.bars.test.client.controllers.TableController;
 import ru.bars.test.client.dto.Person;
@@ -14,19 +16,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 public class LoginManager {
 
-    @Autowired
     private RestDataService dataService;
 
     private Scene scene;
-
     public LoginManager(Scene scene){
         this.scene = scene;
     }
 
+    public void setDataService(RestDataService dataService) {
+        this.dataService = dataService;
+    }
+
     public void getData(String user, String password){
+        System.out.println(dataService.getClass().getSimpleName());
         List<Person> intermediate = dataService.getData(user, password.hashCode());
         if (intermediate.isEmpty())
             showLoginScreen();

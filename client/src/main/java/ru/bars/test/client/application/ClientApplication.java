@@ -3,6 +3,7 @@ package ru.bars.test.client.application;
 import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 public abstract class ClientApplication extends Application {
 
