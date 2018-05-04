@@ -1,10 +1,19 @@
 package ru.bars.test.server.dto;
-public class Person {
+
+import java.io.Serializable;
+
+/**
+ * По идее, dto и rest-либа клиентская должны быть в отдельных модулях
+ */
+public class Person implements Serializable {
 
     private String firstname;
     private String lastname;
     private String patronymic;
     private String position;
+
+    public Person() {
+    }
 
     public Person(String firstname, String lastname, String patronymic, String position) {
         this.firstname = firstname;
@@ -43,5 +52,10 @@ public class Person {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return this.lastname + " " + this.firstname + " " + this.patronymic + " " + this.position;
     }
 }

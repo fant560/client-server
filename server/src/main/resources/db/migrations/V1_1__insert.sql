@@ -8,12 +8,16 @@ CREATE TABLE IF NOT EXISTS person
   position VARCHAR(40)
 );*/
 
+CREATE SEQUENCE IF NOT EXISTS person_seq
+  INCREMENT BY 1
+  NO MAXVALUE
+  START WITH 1;
 
-INSERT INTO person values (1, 'Иван', 'Волков', 'Семенович', 'Продавец');
-INSERT INTO person values (2, 'Сергей', 'Анисимов', 'Петрович', 'Сторож');
-INSERT INTO person values (3, 'Алексей', 'Мальцев', 'Семенович', 'Пекарь');
-INSERT INTO person values (4, 'Никита', 'Бехтерев', 'Алексеевич', 'Программист');
-INSERT INTO person values (5, 'Катерина', 'Салтыкова', 'Алексеевна', 'Бухгалтер');
-INSERT INTO person values (6, 'Светлана', 'Ведерникова', 'Семеновна', 'Продавец');
-INSERT INTO person values (7, 'Марина', 'Волкова', 'Анатольевна', 'Консультант');
-INSERT INTO person values (8, 'Анатолий', 'Деникин', 'Павлович', 'Директор');
+INSERT INTO person values (nextval('person_seq'), 'Иван', 'Волков', 'Семенович', 'Продавец');
+INSERT INTO person values (nextval('person_seq'), 'Сергей', 'Анисимов', 'Петрович', 'Сторож');
+INSERT INTO person values (nextval('person_seq'), 'Алексей', 'Мальцев', 'Семенович', 'Пекарь');
+INSERT INTO person values (nextval('person_seq'), 'Никита', 'Бехтерев', 'Алексеевич', 'Программист');
+INSERT INTO person values (nextval('person_seq'), 'Катерина', 'Салтыкова', 'Алексеевна', 'Бухгалтер');
+INSERT INTO person values (nextval('person_seq'), 'Светлана', 'Ведерникова', 'Семеновна', 'Продавец');
+INSERT INTO person values (nextval('person_seq'), 'Марина', 'Волкова', 'Анатольевна', 'Консультант');
+INSERT INTO person values (nextval('person_seq'), 'Анатолий', 'Деникин', 'Павлович', 'Директор');

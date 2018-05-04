@@ -2,23 +2,22 @@ package ru.bars.test.client.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import ru.bars.test.client.controllers.LoginController;
-import ru.bars.test.client.controllers.TableController;
+import ru.bars.test.client.controllers.MainViewController;
 import ru.bars.test.client.dto.Person;
 import ru.bars.test.client.services.RestDataService;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class LoginManager {
 
+public class LoginManager {
+    //@Autowired
+    //но тогда еще и Scene пытается инжектить
     private RestDataService dataService;
+    //кеш
+    private List<Person> cache = new ArrayList<>();
 
     private Scene scene;
     public LoginManager(Scene scene){
@@ -31,37 +30,28 @@ public class LoginManager {
 
     public void getData(String user, String password){
         System.out.println(dataService.getClass().getSimpleName());
-        List<Person> intermediate = dataService.getData(user, password.hashCode());
-        if (intermediate.isEmpty())
-            showLoginScreen();
-        else showMainView(intermediate);
+        List<Person> intermediate = dataService.getData(user, password);
+        cache.addAll(intermediate);
+        showMainView();
     }
 
-
-    public void logout(){
-        showLoginScreen();
+    public void save(Person person){
+        dataService.save(person);
+        cache.add(person);
+        showMainView();
     }
 
-    public void showLoginScreen(){
+    private void showMainView(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fxml/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/fxml/main.fxml"));
             scene.setRoot(loader.load());
-            LoginController controller = loader.getController();
-            controller.initManager(this);
+            MainViewController controller = loader.getController();
+            controller.setLoginManager(this);
+            controller.fillTable(cache);
         } catch (IOException e) {
             Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
 
-    private void showMainView(List<Person> data){
-        try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/fxml/table.fxml"));
-            scene.setRoot(loader.load());
-            TableController controller = loader.getController();
-            controller.fillTable(data);
-        } catch (IOException e) {
-            Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
 }

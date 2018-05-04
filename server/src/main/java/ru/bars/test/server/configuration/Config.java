@@ -1,5 +1,6 @@
 package ru.bars.test.server.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,12 @@ public class Config {
         });
     }
 
+    @Bean
+    public ObjectMapper objectMapper(){
+        return new ObjectMapper();
+    }
+
+
 
     /**
      * Не нашел другого адекватного решения запускать flyway после hibernate
@@ -27,7 +34,7 @@ public class Config {
     @DependsOn("entityManagerFactory")
     FlywayMigrationInitializer delayedFlywayInitializer(Flyway flyway) {
         return new FlywayMigrationInitializer(flyway, strategy -> {
-            flyway.repair();
+            //flyway.repair();
             flyway.migrate();
         });
     }

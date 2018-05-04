@@ -12,7 +12,6 @@ buildscript {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter:${boot}"
     compile "org.springframework.boot:spring-boot-starter-web:${boot}"
-    compile "org.springframework.boot:spring-boot-starter-parent${boot}"
     compile "org.springframework:spring-web:${spring}"
 }
 
@@ -25,7 +24,7 @@ apply plugin: 'javafx-gradle-plugin'
 // for all available settings please look at the class "JavaFXGradlePluginExtension"
 jfx {
     verbose = true
-    mainClass = "ru.bars.test.client.ClientApplication"
+    mainClass = "ru.bars.test.client.application.Application"
     jfxAppOutputDir = "build/jfx/app"
     jfxMainAppJarName = "client.jar"
     deployDir = "src/main/deploy"

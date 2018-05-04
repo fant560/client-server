@@ -11,8 +11,9 @@ public class PersonEntity implements Serializable {
 
     private static final long serialVersionUID = 3567653491060394677L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_id_generator")
-    @SequenceGenerator(name = "person_id_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    //hibernate сам ставит allocation size в 50
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
     @JsonIgnore
     private Long id;
     @Column

@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * Класс, содержащий спринговый контекст
+ */
 public abstract class ClientApplication extends Application {
 
     private static String[] savedArgs;

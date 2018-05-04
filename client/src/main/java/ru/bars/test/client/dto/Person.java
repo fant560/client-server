@@ -1,6 +1,8 @@
 package ru.bars.test.client.dto;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
 
     private String firstname;
     private String lastname;
@@ -12,6 +14,9 @@ public class Person {
         this.lastname = lastname;
         this.patronymic = patronymic;
         this.position = position;
+    }
+
+    public Person() {
     }
 
     public String getFirstname() {
@@ -44,5 +49,10 @@ public class Person {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return this.lastname + " " + this.firstname + " " + this.patronymic + " " + this.position;
     }
 }

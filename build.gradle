@@ -16,6 +16,16 @@ subprojects {
     ext {
         boot = '1.5.6.RELEASE'
         spring = '4.2.0.RELEASE'
+        apache_http = '4.5.2'
+        slf4j = '1.7.10'
+        hibernate = '5.1.0.Final'
+        postgres = '9.4.1212'
+        flyway = '4.2.0'
+    }
+
+
+    configurations {
+        all*.exclude module: 'spring-boot-starter-logging'
     }
 }
 
