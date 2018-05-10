@@ -1,3 +1,24 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        // плагин для сборки spring-boot
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${boot}"
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+
+springBoot {
+    executable = true
+    excludeDevtools = true
+    mainClass = 'ru.bars.test.server.ServerApplication'
+}
+
+
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:${boot}"
     compile "org.springframework.boot:spring-boot-starter-security:${boot}"
